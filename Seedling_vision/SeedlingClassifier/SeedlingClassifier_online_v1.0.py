@@ -16,7 +16,7 @@ sys.path.insert(1,"../")
 from modbus_mqtt.libseedlingmodbus import SeedlingModbusClient
 from modbus_mqtt import libseedlingmodbus as lsmodb
 from common_functions import *
-from Ericks_system import ericks_functions
+from detection_classification_dl_model import det_cla_mdl_functions
 
 
 def on_connect_(self, userdata, flags, rc):
@@ -161,7 +161,7 @@ if CV_MODE is "online":
     cvSystem.cameraInitialize()
 print("Computer vision system initialization -> successfull")
 #Erick's CV
-cvSystem2 = ericks_functions.ErickSeedlingClassifier(modbusClient)
+cvSystem2 = det_cla_mdl_functions.ErickSeedlingClassifier(modbusClient)
 
 
 if modbusClientConnectedFlag is True:

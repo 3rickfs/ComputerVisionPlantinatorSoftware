@@ -3,7 +3,7 @@ PREDICTION SIMULATOR
 --------------------
 
 this program is for filling out RobotPredictions table from ClassificatoRobotPrediction database
-so as to a bot (a python deamon) sends data to the dashboard web app of plantinator's
+so as to a service (a python deamon) sends data to the dashboard web app of plantinator's
 
 The idea is when the complete plantinator system gets production stage, the local data produced 
 by the robot is sent to the dashboard running in heroku cloud platform
