@@ -104,7 +104,7 @@ class DBTransmitter():
 	def __init__(self):
 		self.user_agent_name = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0"
 		self.loginpage_url = "http://localhost:8000/login/?next=/"
-		self.postrequest_url = "http://localhost:8000/"
+		self.postrequest_url = "http://localhost:8000/bridge_script_webapp/" #"http://localhost:8000/"
 		self.ws_csrfmiddlewaretoken = env('WS_CSRF')
 		self.ws_username = env('WS_USERNAME')
 		self.ws_password = env('WS_PASSWORD')
@@ -146,25 +146,35 @@ class DBTransmitter():
 		session.headers.update({'User-Agent': self.user_agent_name})
 
 		# Get login page
-		response = session.get(self.loginpage_url)
-
+		#response = session.get(self.loginpage_url)
+		#print(response.text)
 		# Get csrf
 		# Do something to response.text
 
 		# Post to login
-		self.response = session.post(self.postrequest_url, data={
-		    'username': self.ws_username,
-		    'password': self.ws_password,
-		    'csrfmiddlewaretoken': self.ws_csrfmiddlewaretoken,
-		})
+		#print(f"CSRF token: {self.ws_csrfmiddlewaretoken}")
+
+		#self.response = session.post(self.loginpage_url, data={
+		#    'username': self.ws_username,
+		#    'password': self.ws_password,},
+		#    cookies= {'csrftoken': 'D4YtG9SrjXURwdxFYhjy2i3TpA0jQDuomf8ms7jZs4qtOhX6l2krDVi4AaNie5ny'}, #self.ws_csrfmiddlewaretoken,
+		#)
+
+		#'csrfmiddlewaretoken': 'enN9mr2LpfE6JvNy8jx5yx82KLiHYFxTDeNOxyRCi91u3ATQMyQ5GielBmyl1xwb' #self.ws_csrfmiddlewaretoken,
+		#'csrftoken': 'enN9mr2LpfE6JvNy8jx5yx82KLiHYFxTDeNOxyRCi91u3ATQMyQ5GielBmyl1xwb' #self.ws_csrfmiddlewaretoken,
+		#cookie = {'csrftoken': self.ws_csrfmiddlewaretoken},
+		#cookies = {'csrftoken': csrf_token}
+		#requests.post(var["BASE_URL"] + "_api/send-notification/", json=data, headers=headers, cookies=cookies)
 
 		# Post desired data
-		self.response = session.post('postrequest_url', data={
+		self.response = session.post(self.postrequest_url, data={
 		    'data': self.rqstjson,
 		})
 
 	def print_results(self):
+		print("There are results here!")
 		print(self.response.status_code)
+		#print(self.response.text)
 
 
 def datalist2bsent(res):
